@@ -83,7 +83,7 @@
         border: 1px solid #aaa;
     }
 
-    /* FLOATING SHAPE */
+    /* FLOATING ROTATING SHAPE */
     #floating-shape {
         position: fixed;
         top: 20%;
@@ -94,16 +94,14 @@
         border-radius: 20px;
         filter: drop-shadow(0 0 20px #0088ff);
         transform-style: preserve-3d;
-        transition: transform 0.1s linear;
         z-index: 1000;
-        animation: floaty 4s ease-in-out infinite;
+        animation: spin 6s linear infinite; /* constant rotation */
     }
 
-    /* FLOATING ANIMATION */
-    @keyframes floaty {
-        0%   { transform: translateY(0px); }
-        50%  { transform: translateY(-20px); }
-        100% { transform: translateY(0px); }
+    /* CONSTANT SPIN ANIMATION */
+    @keyframes spin {
+        from { transform: rotateX(0deg) rotateY(0deg); }
+        to   { transform: rotateX(360deg) rotateY(360deg); }
     }
 
     /* SECTIONS */
@@ -254,7 +252,7 @@
     </div>
 </nav>
 
-<!-- FLOATING SHAPE -->
+<!-- FLOATING ROTATING SHAPE -->
 <div id="floating-shape"></div>
 
 <!-- HERO -->
@@ -337,11 +335,12 @@
 </footer>
 
 <script>
-    /* FLOATING SHAPE SCROLL ROTATION */
+    /* SCROLL-REACTIVE ROTATION BOOST */
     const shape = document.getElementById("floating-shape");
+
     window.addEventListener("scroll", () => {
         const y = window.scrollY;
-        shape.style.transform = `rotateX(${y * 0.25}deg) rotateY(${y * 0.35}deg)`;
+        shape.style.transform = `rotateX(${y * 0.3}deg) rotateY(${y * 0.4}deg)`;
     });
 
     /* LIGHT/DARK MODE */
