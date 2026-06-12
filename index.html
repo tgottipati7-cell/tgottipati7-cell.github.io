@@ -75,7 +75,7 @@
         border: 1px solid #333;
         color: #e6edf3;
         transition: 0.2s;
-        margin-left: 60px; /* moved further right */
+        margin-left: 35px; /* moved slightly left from previous 60px */
     }
     body.light #toggle {
         background: #ddd;
@@ -83,7 +83,7 @@
         border: 1px solid #aaa;
     }
 
-    /* FLOATING ROTATING SHAPE */
+    /* FLOATING SHAPE (ROTATES ONLY ON SCROLL) */
     #floating-shape {
         position: fixed;
         top: 20%;
@@ -94,14 +94,8 @@
         border-radius: 20px;
         filter: drop-shadow(0 0 20px #0088ff);
         transform-style: preserve-3d;
+        transition: transform 0.1s linear;
         z-index: 1000;
-        animation: spin 6s linear infinite; /* constant rotation */
-    }
-
-    /* CONSTANT SPIN ANIMATION */
-    @keyframes spin {
-        from { transform: rotateX(0deg) rotateY(0deg); }
-        to   { transform: rotateX(360deg) rotateY(360deg); }
     }
 
     /* SECTIONS */
@@ -252,7 +246,7 @@
     </div>
 </nav>
 
-<!-- FLOATING ROTATING SHAPE -->
+<!-- FLOATING SHAPE -->
 <div id="floating-shape"></div>
 
 <!-- HERO -->
@@ -335,12 +329,12 @@
 </footer>
 
 <script>
-    /* SCROLL-REACTIVE ROTATION BOOST */
+    /* ROTATE SHAPE ONLY WHEN SCROLLING */
     const shape = document.getElementById("floating-shape");
 
     window.addEventListener("scroll", () => {
         const y = window.scrollY;
-        shape.style.transform = `rotateX(${y * 0.3}deg) rotateY(${y * 0.4}deg)`;
+        shape.style.transform = `rotateX(${y * 0.25}deg) rotateY(${y * 0.35}deg)`;
     });
 
     /* LIGHT/DARK MODE */
